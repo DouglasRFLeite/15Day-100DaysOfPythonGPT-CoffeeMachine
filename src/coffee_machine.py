@@ -1,4 +1,5 @@
 from src.menu import MENU
+from copy import deepcopy
 
 
 class CoffeeMachine:
@@ -28,9 +29,28 @@ class CoffeeMachine:
             return False  # to stop
 
     def print_report(self):
-        for ingredient in self.resources:
-            print(f"{ingredient.capitalize()}: {self.resources[ingredient]}")
+        print(f"Water: {self.resources['water']}ml")
+        print(f"Milk: {self.resources['milk']}ml")
+        print(f"Coffee: {self.resources['coffee']}g")
+        print(f"Money: ${self.money}")
 
-    def make_espresso(self):
-        if self.get_payment(MENU["espresso"]["cost"]):
+    def check_and_reduce_resources(self, ingredients):
+        new_resourses = deepcopy(self.resources)
+        for ingredient in ingredients:
+            if new_resourses[ingredient] > ingredients[ingredient]:
+                new_resourses[ingredient] -= ingredients[ingredient]
+            else:
+                print(f"Sorry, there is not enough {ingredient}.")
+                return False
+        return new_resourses
+
+    def make_coffe(self, coffe):
+        if not (coffe in MENU):
+            print("We don't have that coffe here.")
             return
+
+        new_resources = self.check_and_reduce_resources(
+            MENU[coffe]["ingredients"])
+        if new_resources:
+            self.resources = deepcopy(new_resources)
+            print(f"Here is your {coffe}. Enjoy!")
