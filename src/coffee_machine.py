@@ -49,6 +49,9 @@ class CoffeeMachine:
             print("We don't have that coffe here.")
             return
 
+        if self.get_payment(MENU[coffe]["cost"]):
+            return
+
         new_resources = self.check_and_reduce_resources(
             MENU[coffe]["ingredients"])
         if new_resources:
