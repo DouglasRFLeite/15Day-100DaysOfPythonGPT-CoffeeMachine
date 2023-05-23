@@ -11,6 +11,12 @@ class CoffeeMachine:
         }
         self.money = 0
 
+    def print_report(self):
+        print(f"Water: {self.resources['water']}ml")
+        print(f"Milk: {self.resources['milk']}ml")
+        print(f"Coffee: {self.resources['coffee']}g")
+        print(f"Money: ${self.money}")
+
     def get_payment(self, price):
         print("Insert coins:")
         quarters = int(input("\thow many quartes: "))
@@ -28,12 +34,6 @@ class CoffeeMachine:
             print(f"Here is ${change:.2f} in change.")
             return False  # to stop
 
-    def print_report(self):
-        print(f"Water: {self.resources['water']}ml")
-        print(f"Milk: {self.resources['milk']}ml")
-        print(f"Coffee: {self.resources['coffee']}g")
-        print(f"Money: ${self.money}")
-
     def check_and_reduce_resources(self, ingredients):
         new_resourses = deepcopy(self.resources)
         for ingredient in ingredients:
@@ -44,16 +44,22 @@ class CoffeeMachine:
                 return False
         return new_resourses
 
-    def make_coffe(self, coffe):
+    def make_coffee(self, coffe):
+        # See if we have coffee
         if not (coffe in MENU):
             print("We don't have that coffe here.")
             return
 
+        # See if we have ingredients
+        new_resources = self.check_and_reduce_resources(
+            MENU[coffe]["ingredients"])
+        if not new_resources:
+            return
+
+        # Ask for payment and see if we have payment
         if self.get_payment(MENU[coffe]["cost"]):
             return
 
-        new_resources = self.check_and_reduce_resources(
-            MENU[coffe]["ingredients"])
-        if new_resources:
-            self.resources = deepcopy(new_resources)
-            print(f"Here is your {coffe}. Enjoy!")
+        # If everything is fine, spen resources and give coffee
+        self.resources = deepcopy(new_resources)
+        print(f"Here is your {coffe}. Enjoy!")
