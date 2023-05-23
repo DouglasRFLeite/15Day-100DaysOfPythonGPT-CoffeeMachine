@@ -1,4 +1,4 @@
-from src.menu import MENU
+from menu import MENU
 from copy import deepcopy
 
 
@@ -63,3 +63,22 @@ class CoffeeMachine:
         # If everything is fine, spen resources and give coffee
         self.resources = deepcopy(new_resources)
         print(f"Here is your {coffe}. Enjoy!")
+
+
+
+def main():
+    coffee_machine = CoffeeMachine()
+    while True:
+        command = input("What would you like? (espresso/latte/cappuccino)/report/off ").lower()
+        
+        if command == "off":
+            break            
+        elif command == "report":
+            coffee_machine.print_report()
+        else:
+            coffee_machine.make_coffee(command)
+
+if __name__ == "__main__":
+    main()
+
+    

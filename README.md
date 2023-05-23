@@ -6,14 +6,15 @@ Day 15 of the [100 Days of Code with Python Bootcamp](https://www.udemy.com/cour
 
 100 Days of Python is a Python Bootcamp from Udemy that provides 100 days of Python pratical content with lessons and projects. The GPT part is something I'm adding to the course and infers that I shall use ChatGPT's engine and/or API in some way on each and every one of those 100 projects. Furthermore, I shall also practice using PyTest to test these projects and applications at least in some level.
 
-## HigherLower
+## CoffeeMachine
 
-Higher Lower is the thirteenth project of the thirteenth Day of the bootcamp. Its purpose is to develop the ability do debug, as well as further develop the familiarity with every other concept previously presented.
+Coffee Machine is the fifteenth project of the fifteenth Day of the bootcamp. Its purpise is to be one more project to enhance skills and, in the courses sequence, it's supposed to be the first project on an actual Python development enviroment. I have done that with VSCode ever since I began.
 
-The actual project consists of a simple game of Higher or Lower, closely related to [this](http://www.higherlowergame.com/), where we have a dataset of Instagram accounts and the game presents the user with two. You must guess which has more followers. If you guess right, you gain a point and keep going. If you guess wrong, you lose and the game ends.
+The project consists of a coffee machine that holds resources, money and a menu, the user may ask for the coffees and pay with coins, recieving change when needed.
 
-It did not seam feasible to use ChatGPT's API and testing seemed too much for this project,
+It did not seem feasible to use ChatGPT's API in this project but it is pretty well tested, with a test file for every functionality.
 
 ## Project Structure
 
- - [src/](src/) - There is only the file `game.py` with the game logic and functions, and the file `data.py` with the necessary data.
+ - [src/](src/) - There is only the file `coffee_machine.py` with the functions, and the file `manu.py` with the necessary data of each coffee.
+ - [test/](test/) - There is a test for each important functionality of the coffee machine: `test_report.py`, `test_resources.py`, `test_payment.py` and `test_make_coffee.py`.
